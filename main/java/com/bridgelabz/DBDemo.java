@@ -16,8 +16,9 @@ public class DBDemo {
             connection = DriverManager.getConnection(jdbcURL, userName, passWord);
             System.out.println("Connection is successful!!!!" + connection);
             Statement statement = connection.createStatement();
+            statement.execute("update payroll_service.employee_details set salary = 300000 where  name = 'Jitesh'");
             ResultSet resultSet = statement.executeQuery("SELECT * FROM payroll_service.employee_details");
-            System.out.println("Retrieve employee data from database :");
+            System.out.println("Update employee data from database :");
             while (resultSet.next()) {
                 System.out.println(resultSet.getInt("id") + " " + resultSet.getString("name") + " " + resultSet.getDouble("salary") + " " + resultSet.getDate("start"));
             }
