@@ -19,7 +19,6 @@ public class DBDemo {
             System.out.println("Connection is successful!!!!" + connection);
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
-            ;
         } finally {
             connection.close();
         }
