@@ -1,8 +1,6 @@
 package com.bridgelabz;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DBDemo {
 
@@ -17,6 +15,12 @@ public class DBDemo {
             System.out.println("Connecting to database :" + jdbcURL);
             connection = DriverManager.getConnection(jdbcURL, userName, passWord);
             System.out.println("Connection is successful!!!!" + connection);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM payroll_service.employee_details");
+            System.out.println("Retrieve employee data from database :");
+            while (resultSet.next()) {
+                System.out.println(resultSet.getInt("id") + " " + resultSet.getString("name") + " " + resultSet.getDouble("salary") + " " + resultSet.getDate("start"));
+            }
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
         } finally {
