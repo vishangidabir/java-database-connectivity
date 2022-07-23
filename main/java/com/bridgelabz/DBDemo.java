@@ -15,10 +15,9 @@ public class DBDemo {
             System.out.println("Connecting to database :" + jdbcURL);
             connection = DriverManager.getConnection(jdbcURL, userName, passWord);
             System.out.println("Connection is successful!!!!" + connection);
-            PreparedStatement preparedStatement = connection.prepareStatement("update payroll_service.employee_details set salary = 200000 where  name = 'Jitesh'");
-            preparedStatement.execute();
-            ResultSet resultSet = preparedStatement.executeQuery("SELECT * FROM payroll_service.employee_details");
-            System.out.println("Update employee data from database :");
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM payroll_service.employee_details where start between cast('2020-01-01' as date) and date (now())");
+            System.out.println("Retrieve employee data from database :");
             while (resultSet.next()) {
                 System.out.println(resultSet.getInt("id") + " " + resultSet.getString("name") + " " + resultSet.getDouble("salary") + " " + resultSet.getDate("start"));
             }
