@@ -17,7 +17,7 @@ public class EmployeePayrollJDBC {
             connection = DriverManager.getConnection(jdbcURL, userName, passWord);
             System.out.println("Connection is successful!!!!" + connection);
             Statement statement = connection.createStatement();
-            statement.executeUpdate("insert into employee_details values (5,'Vihan','M','2019-05-13',300000, 2000, 50000, 4000000, 4000)");
+            statement.executeUpdate("delete from employee_details where id=3");
             ResultSet resultSet = statement.executeQuery("select * from employee_details");
 
             while (resultSet.next()) {
