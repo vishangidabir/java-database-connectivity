@@ -17,15 +17,19 @@ public class EmployeePayrollJDBC {
             connection = DriverManager.getConnection(jdbcURL, userName, passWord);
             System.out.println("Connection is successful!!!!" + connection);
             Statement statement = connection.createStatement();
-            statement.execute("insert into payroll_service.employee_details values(4,'Sanket','M',250000,'2018-05-21')");
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM payroll_service.employee_details");
-            System.out.println("Update employee data from database :");
+            statement.executeUpdate("insert into employee_details values (5,'Vihan','M','2019-05-13',300000, 2000, 50000, 4000000, 4000)");
+            ResultSet resultSet = statement.executeQuery("select * from employee_details");
+
             while (resultSet.next()) {
                 System.out.println(resultSet.getInt(1)
                         + " " + resultSet.getString(2)
                         + " " + resultSet.getString(3)
-                        + " " + resultSet.getDouble(4)
-                        + " " + resultSet.getDate(5));
+                        + " " + resultSet.getDate(4)
+                        + " " + resultSet.getDouble(5)
+                        + " " + resultSet.getDouble(6)
+                        + " " + resultSet.getDouble(7)
+                        + " " + resultSet.getDouble(8)
+                        + " " + resultSet.getDouble(9));
             }
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
